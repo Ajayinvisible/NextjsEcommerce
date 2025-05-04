@@ -34,14 +34,34 @@ const navLink = [
     ],
   },
   {
+    route: "/contact",
+    label: "Contact",
+    isAuth: false,
+  },
+  {
+    route: "/cart",
+    label: "Cart",
+    isAuth: false,
+  },
+  {
+    route: "/placeorder",
+    label: "Place Order",
+    isAuth: true,
+  },
+  {
     route: "/track",
     label: "Tack Order",
     isAuth: true,
   },
   {
-    route: "/contact",
-    label: "Contact",
-    isAuth: false,
+    route: "/privacy",
+    label: "Privacy Policy",
+    isAuth: true,
+  },
+  {
+    route: "/terms",
+    label: "Terms & Conditions",
+    isAuth: true,
   },
 ];
 export default navLink;

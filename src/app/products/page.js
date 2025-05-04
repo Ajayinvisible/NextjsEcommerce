@@ -1,9 +1,20 @@
-import React from 'react'
+import axios from "axios";
+import ProductsCard from "./_components/ProductsCard";
 
-function ProductsPage() {
+async function ProductsPage() {
+  const response = await axios.get(
+    "https://node-20250302.vercel.app/api/products"
+  );
+
+  const products = response.data;
+
   return (
-    <div>Hello From Products Page</div>
-  )
+    <>
+      {products?.map((product, index) => (
+        <ProductsCard key={index} product={product} />
+      ))}
+    </>
+  );
 }
 
-export default ProductsPage
+export default ProductsPage;

@@ -1,8 +1,10 @@
-import React from 'react'
-
 function LoginPage() {
   return (
-    <div>Hello From Login Page</div>
+    <>
+      <div className="container margin-auto mx-20 my-20">
+        <h1>Hello from Login Page</h1>
+      </div>
+    </>
   )
 }
 
