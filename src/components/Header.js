@@ -2,8 +2,8 @@
 import navLink from "@/constants/navLink";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../assets/images/logo.png";
-import user from "../assets/images/user.png";
+import logo from "@/assets/images/logo.png";
+import user from "@/assets/images/user.png";
 import MainMenu from "./MainMenu";
 
 function Header() {
