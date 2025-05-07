@@ -1,5 +1,6 @@
-async function CatchAllNews({ params }) {
-    const slug = (await params).slug;
+async function CatchAllNews({ params,searchParams }) {
+  const slug = (await params).slug;
+  const search = await searchParams;
   return (
     <>
       <div>CatchAllNews</div>
@@ -10,6 +11,7 @@ async function CatchAllNews({ params }) {
           </div>
         );
       })}
+      <p>Search : { search }</p>
     </>
   );
 }

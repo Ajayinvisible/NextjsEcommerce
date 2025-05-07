@@ -9,7 +9,7 @@ function BackButton() {
     };
   return (
     <button
-      className="border-2 border-blue-600 py-2 px-7 rounded-2xl cursor-pointer"
+      className="border-2 border-blue-600 py-1 px-5 rounded-xl cursor-pointer"
       onClick={back}
     >
       Back
