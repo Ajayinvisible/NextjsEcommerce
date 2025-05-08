@@ -1,4 +1,18 @@
 import BackButton from "./_components/BackButton";
+import config from "@/config";
+import logo from "@/assets/images/logo.png"
+
+export const metadata = {
+  title: 'Products',
+  description: "Your one-stop shop for all your needs",
+  keywords: "Your one-stop shop for all your needs",
+  openGraph: {
+    title: config.appName,
+    description: "Your one-stop shop for all your needs",
+    image: logo,
+    type: "website",
+  },
+};
 
 function ProductsLayout({ children }) {
   return (

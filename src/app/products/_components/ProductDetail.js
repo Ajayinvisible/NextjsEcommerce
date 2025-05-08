@@ -63,7 +63,7 @@ function ProductDetail({ product }) {
                     <div className="rounded-lg bg-gray-100 flex py-2 px-3">
                       <span className="text-indigo-400 mr-1 mt-1">$</span>
                       <span className="font-bold text-indigo-600 text-3xl">
-                        25
+                        { product.price }
                       </span>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ function ProductDetail({ product }) {
                     type="button"
                     className="h-14 px-6 py-2 font-semibold rounded-xl bg-green-700 hover:bg-green-600 text-white"
                   >
-                    Add to Cart
+                    Buy now
                   </button>
                   <button
                     type="button"

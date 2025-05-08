@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import config from "@/config";
+import logo  from '@/assets/images/logo.png';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: config.appName,
+  title: {
+    default: config.appName,
+    template: `${config.appName} - %s`,
+  },
   description: "Your one-stop shop for all your needs",
+  keywords: "Your one-stop shop for all your needs",
+  openGraph: {
+    title: config.appName,
+    description: "Your one-stop shop for all your needs",
+    image: logo,
+    type: "website"
+  },
 };
 
 export default function RootLayout({ children }) {

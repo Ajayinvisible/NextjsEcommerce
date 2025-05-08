@@ -1,11 +1,10 @@
-import axios from "axios";
 import ProductsCard from "./_components/ProductsCard";
 import { getAllProducts } from "@/api/products/productsApi";
 
 async function ProductsPage() {
   const response = await getAllProducts().catch((error) => {
     throw new Error(error.response.data);
-  });;
+  });
 
   const products = response?.data;
 

@@ -15,10 +15,7 @@ function ProductsCard({ product }) {
           />
         </Link>
         <div className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="bg-blue-100 text-blue-800 text-xs font-medium w-24 me-2 px-2.5 py-0.5 rounded-sm truncate">
-              Rs : {product.price}
-            </span>
+          <div className="flex items-center mb-2">
             <span className="bg-blue-100 text-green-800 text-xs font-medium w-24 me-2 px-2.5 py-0.5 rounded-sm truncate">
               {product.brand}
             </span>
@@ -31,6 +28,9 @@ function ProductsCard({ product }) {
               {product.name}
             </h5>
           </Link>
+          <p class="mb-3 text-lg">
+            Rs : <span className="text-purple-500">{product.price}</span>
+          </p>
 
           <Link
             href={`/products/${product.id}`}
@@ -38,7 +38,7 @@ function ProductsCard({ product }) {
           >
             Read more
           </Link>
-          <button className="ms-2 w-[22%]  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+          <button className="ms-2 w-[22%]  px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
             &hearts;
           </button>
         </div>
