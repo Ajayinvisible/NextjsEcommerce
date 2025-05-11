@@ -28,7 +28,7 @@ function ProductsCard({ product }) {
               {product.name}
             </h5>
           </Link>
-          <p class="mb-3 text-lg">
+          <p className="mb-3 text-lg">
             Rs : <span className="text-purple-500">{product.price}</span>
           </p>
 
