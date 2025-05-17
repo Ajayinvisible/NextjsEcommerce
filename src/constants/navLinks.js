@@ -1,4 +1,4 @@
-const navLink = [
+const navLinks = [
   {
     route: "/",
     label: "Home",
@@ -17,7 +17,7 @@ const navLink = [
   {
     route: "/news",
     label: "News",
-    isAuth: false,
+    isAuth: true,
     subMenu: [
       {
         route: "/technology",
@@ -41,27 +41,27 @@ const navLink = [
   {
     route: "/cart",
     label: "Cart",
-    isAuth: false,
-  },
-  {
-    route: "/placeorder",
-    label: "Place Order",
     isAuth: true,
   },
-  {
-    route: "/track",
-    label: "Tack Order",
-    isAuth: true,
-  },
-  {
-    route: "/privacy",
-    label: "Privacy Policy",
-    isAuth: true,
-  },
-  {
-    route: "/terms",
-    label: "Terms & Conditions",
-    isAuth: true,
-  },
+  // {
+  //   route: "/placeorder",
+  //   label: "Place Order",
+  //   isAuth: true,
+  // },
+  // {
+  //   route: "/track",
+  //   label: "Tack Order",
+  //   isAuth: true,
+  // },
+  // {
+  //   route: "/privacy",
+  //   label: "Privacy Policy",
+  //   isAuth: true,
+  // },
+  // {
+  //   route: "/terms",
+  //   label: "Terms & Conditions",
+  //   isAuth: true,
+  // },
 ];
-export default navLink;
+export default navLinks;

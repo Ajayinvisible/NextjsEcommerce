@@ -1,13 +1,19 @@
 "use client";
-import navLink from "@/constants/navLink";
+import logo from "@/assets/images/logo.png";
+import proUser from "@/assets/images/user.png";
+import navLinks from "@/constants/navLinks";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/images/logo.png";
-import user from "@/assets/images/user.png";
 import MainMenu from "./MainMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "@/redux/auth/authSlicer";
+import { IoLogOut } from "react-icons/io5";
+
 
 function Header() {
-  const isAuth = false; // Replace with your authentication logic
+  // const isAuth = false; // Replace with your authentication logic
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state)
   return (
     <header>
       <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
@@ -22,22 +28,13 @@ function Header() {
             </span>
           </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            {isAuth ? (
-              <button
-                type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-              >
-                <span className="sr-only">Open user menu</span>
-                <Image
-                  className="w-8 h-8 rounded-full"
-                  src={user}
-                  alt="user photo"
-                />
-              </button>
+            {user ? (
+              <div className="flex items-center">
+                <h4 className="font-semibold text-white mr-3">Hi! {user.name}</h4>
+                <button onClick={() => dispatch(logoutUser())} className="bg-slate-700 text-white dark:text-slate-700 dark:bg-white p-2 rounded cursor-pointer">
+                  <IoLogOut />
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
@@ -52,11 +49,9 @@ function Header() {
             id="navbar-sticky"
           >
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              {navLink.map((navLink, index) =>
-                isAuth || !navLink.isAuth ? (
-                  index <= 6 ? (
-                    <MainMenu navLink={navLink} isAuth={isAuth} key={index} />
-                  ) : null
+              {navLinks.map((navLink, index) =>
+                user || !navLink.isAuth ? (
+                  <MainMenu navLink={navLink} key={index} />
                 ) : null
               )}
             </ul>

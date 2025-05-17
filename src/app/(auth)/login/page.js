@@ -1,8 +1,8 @@
 "use client";
-import { login } from "@/api/auth/auth";
+import { loginUser } from "@/redux/auth/authAction";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaEye,
@@ -11,10 +11,10 @@ import {
   FaGithub,
   FaGooglePlus,
 } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 function LoginPage() {
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -22,21 +22,20 @@ function LoginPage() {
     formState: { errors },
   } = useForm();
 
+  const { user, error, loading } = useSelector((state) => state);
+
   const router = useRouter();
 
-  async function submitForm(data) {
-    setLoading(true);
-    try {
-      const response = await login(data);
-      router.push("/");
-    } catch (error) {
-      toast.error(error.response.data, {
-        autoClose: 3000,
-      });
-    } finally {
-      setLoading(false);
-    }
+  const dispatch = useDispatch();
+
+  function submitForm(data) {
+    dispatch(loginUser(data));
   }
+
+  useEffect(() => {
+    if (user) return router.push("/");
+    if (error) toast.error(error);
+  }, [user, error]);
 
   return (
     <>
