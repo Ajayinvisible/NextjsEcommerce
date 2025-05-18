@@ -16,7 +16,7 @@ function AuthLayout({ children }) {
           className="object-cover w-full h-svh fixed top-0 left-0 -z-1 opacity-75"
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 w-full md:w-1/2 shadow-xl min-h-[65vh] shadow-blue-200 rounded-xl overflow-hidden bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 w-full md:w-1/2 shadow-xl min-h-[65vh] shadow-blue-200 rounded-xl overflow-hidden bg-background dark:bg-dark-background ">
         {children}
         <Image
           src={sideImage}

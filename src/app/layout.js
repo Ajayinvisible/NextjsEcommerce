@@ -2,9 +2,10 @@ import logo from "@/assets/images/logo.png";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import config from "@/config";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import AppProvider from "@/redux/provider";
+import { Geist, Geist_Mono } from "next/font/google";
+import MainLayouts from "../layouts/MainLayouts";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +39,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppProvider>
+          <MainLayouts>
           <Header />
           {children}
           <Footer />
+          </MainLayouts>
         </AppProvider>
       </body>
     </html>

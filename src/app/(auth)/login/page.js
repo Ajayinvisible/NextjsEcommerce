@@ -22,7 +22,7 @@ function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  const { user, error, loading } = useSelector((state) => state);
+  const { user, error, loading } = useSelector((state) => state.auth);
 
   const router = useRouter();
 
@@ -40,12 +40,15 @@ function LoginPage() {
   return (
     <>
       <div className="flex flex-col justify-center items-center p-13">
-        <h1 className="pb-2 border-b-4 border-slate-700 text-2xl font-bold px-5 mb-5">
+        <h1 className="text-foreground dark:text-dark-foreground pb-2 border-b-4 border-foreground dark:border-dark-foreground text-2xl font-bold px-5 mb-5">
           User Login
         </h1>
         <form onSubmit={handleSubmit(submitForm)} className="w-full">
           <div className="mb-4">
-            <label htmlFor="email" className="text-blue-900 text-lg font-bold">
+            <label
+              htmlFor="email"
+              className="text-lg font-bold text-foreground dark:text-dark-foreground"
+            >
               Email
             </label>
             <input
@@ -54,7 +57,7 @@ function LoginPage() {
               {...register("email", {
                 required: "Email is required",
               })}
-              className="border w-full p-2 mt-2 rounded"
+              className="border w-full p-2 mt-2 rounded bg-background dark:bg-dark-foreground"
             />
             <small className="text-red-500 w-full">
               {errors.email?.message}
@@ -63,7 +66,7 @@ function LoginPage() {
           <div className="mb-4 relative">
             <label
               htmlFor="password"
-              className="text-blue-900 text-lg font-bold"
+              className="text-foreground dark:text-dark-foreground text-lg font-bold"
             >
               Password
             </label>
@@ -79,7 +82,7 @@ function LoginPage() {
               type={showPassword ? "text" : "password"}
               id="password"
               {...register("password", { required: "Password is required" })}
-              className="border w-full p-2 mt-2 rounded"
+              className="border w-full p-2 mt-2 rounded bg-background dark:bg-dark-foreground"
             />
             <small className="text-red-500 w-full">
               {errors.password?.message}
@@ -91,7 +94,7 @@ function LoginPage() {
             value={loading ? "submitting..." : "Login"}
             className="bg-green-600 w-full py-3 rounded font-bold text-white cursor-pointer disabled:opacity-50"
           />
-          <div className="border-2 border-slate-700 mt-4"></div>
+          <div className="border-2 border-foreground dark:border-dark-foreground mt-4"></div>
           <ul className="mt-4 flex justify-center gap-3">
             <li className="border p-3 rounded-lg bg-slate-700 hover:bg-slate-800 text-white">
               <Link href="" className="text-2xl ">

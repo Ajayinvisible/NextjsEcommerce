@@ -6,16 +6,22 @@ import Image from "next/image";
 import Link from "next/link";
 import MainMenu from "./MainMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "@/redux/auth/authSlicer";
+import { logoutUser } from "@/redux/auth/authSlice";
 import { IoLogOut } from "react-icons/io5";
+import { MdOutlineLightMode } from "react-icons/md";
+import { toggleTheme } from "@/redux/userPreference/userPreferenceSlice";
+import { MdDarkMode } from "react-icons/md";
+import { LIGHT_THEME } from "@/constants/theme";
+
 
 
 function Header() {
   // const isAuth = false; // Replace with your authentication logic
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state)
+  const { user } = useSelector((state) => state.auth)
+  const { theme } = useSelector((state) => state.userPreference)
   return (
-    <header>
+    <header className="shadow">
       <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
@@ -28,10 +34,22 @@ function Header() {
             </span>
           </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button
+              title={LIGHT_THEME ? "Dark Mode" : "Light Mode"}
+              onClick={() => dispatch(toggleTheme())}
+              className="p-2 rounded bg-background text-foreground border-2 border-foreground dark:bg-dark-background dark:text-dark-foreground hover:bg-foreground hover:text-background dark:hover:bg-dark-foreground dark:hover:text-dark-background me-4 cursor-pointer"
+            >
+              {theme == LIGHT_THEME ? <MdDarkMode /> : <MdOutlineLightMode />}
+            </button>
             {user ? (
               <div className="flex items-center">
-                <h4 className="font-semibold text-white mr-3">Hi! {user.name}</h4>
-                <button onClick={() => dispatch(logoutUser())} className="bg-slate-700 text-white dark:text-slate-700 dark:bg-white p-2 rounded cursor-pointer">
+                <h4 className="font-semibold text-foreground mr-3">
+                  Hi! {user.name}
+                </h4>
+                <button
+                  onClick={() => dispatch(logoutUser())}
+                  className="bg-background text-foreground border-2 border-foreground dark:text-dark-foreground dark:bg-dark-background p-2 rounded cursor-pointer"
+                >
                   <IoLogOut />
                 </button>
               </div>
