@@ -1,28 +1,23 @@
 "use client";
 import logo from "@/assets/images/logo.png";
-import proUser from "@/assets/images/user.png";
 import navLinks from "@/constants/navLinks";
+import { LIGHT_THEME } from "@/constants/theme";
+import { toggleTheme } from "@/redux/userPreference/userPreferenceSlice";
 import Image from "next/image";
 import Link from "next/link";
-import MainMenu from "./MainMenu";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "@/redux/auth/authSlice";
-import { IoLogOut } from "react-icons/io5";
-import { MdOutlineLightMode } from "react-icons/md";
-import { toggleTheme } from "@/redux/userPreference/userPreferenceSlice";
-import { MdDarkMode } from "react-icons/md";
-import { LIGHT_THEME } from "@/constants/theme";
-
-
+import AuthUser from "./AuthUser";
+import MainMenu from "./MainMenu";
 
 function Header() {
   // const isAuth = false; // Replace with your authentication logic
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth)
-  const { theme } = useSelector((state) => state.userPreference)
+  const { user } = useSelector((state) => state.auth);
+  const { theme } = useSelector((state) => state.userPreference);
   return (
-    <header className="shadow">
-      <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <header className="shadow z-30 sticky top-0">
+      <nav className="bg-white dark:bg-gray-900 w-full z-30 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             href="/"
@@ -42,17 +37,7 @@ function Header() {
               {theme == LIGHT_THEME ? <MdDarkMode /> : <MdOutlineLightMode />}
             </button>
             {user ? (
-              <div className="flex items-center">
-                <h4 className="font-semibold text-foreground mr-3">
-                  Hi! {user.name}
-                </h4>
-                <button
-                  onClick={() => dispatch(logoutUser())}
-                  className="bg-background text-foreground border-2 border-foreground dark:text-dark-foreground dark:bg-dark-background p-2 rounded cursor-pointer"
-                >
-                  <IoLogOut />
-                </button>
-              </div>
+              <AuthUser user={user} />
             ) : (
               <Link
                 href="/login"
