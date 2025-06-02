@@ -71,7 +71,8 @@ function LoginPage() {
               Password
             </label>
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 setShowPassword(!showPassword);
               }}
               className="absolute top-12 right-5"

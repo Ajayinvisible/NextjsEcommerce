@@ -26,7 +26,7 @@ function AuthLayout({ children }) {
           className="w-full h-full object-cover hidden md:block"
         />
       </div>
-      <ToastContainer />
+      
     </section>
   );
 }

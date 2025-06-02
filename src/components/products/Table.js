@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
 import { FaRegImage } from "react-icons/fa6";
 import { IoCog, IoTrashSharp } from "react-icons/io5";
+import noImage from "../../assets/images/no-image.png"; 
 
 function ProductTable({ products }) {
   return (
@@ -13,10 +14,10 @@ function ProductTable({ products }) {
             <th scope="col" className="px-6 py-3">
               S.N
             </th>
-            <th scope="col" className="px-6 py-3">
-              <FaRegImage className="w-4 h-4"/>
+            <th scope="col" width="8%" className="px-6 py-3">
+              <FaRegImage className="w-4 h-4" />
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" width="25%" className="px-6 py-3">
               Product name
             </th>
             <th scope="col" className="px-6 py-3">
@@ -32,7 +33,7 @@ function ProductTable({ products }) {
               Created At
             </th>
             <th scope="col" className="px-6 py-3 flex justify-center">
-              <IoCog class="w-5 h-5" />
+              <IoCog className="w-5 h-5" />
             </th>
           </tr>
         </thead>
@@ -48,14 +49,14 @@ function ProductTable({ products }) {
               </th>
               <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <Image
-                  src={product.imageUrls[0]}
+                  src={product?.imageUrls[0] ? product.imageUrls[0] : noImage}
                   alt={product.name}
                   width={60}
                   height={60}
                   className="rounded-lg w-[60px] h-[60px] object-cover shadow-lg border-2 border-gray-600 dark:border-gray-300"
                 />
               </th>
-              <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <th className="px-6 py-4 font-medium text-gray-900 dark:text-white">
                 {product.name}
               </th>
               <td className="px-6 py-4">{product.brand}</td>

@@ -1,6 +1,6 @@
 import config from "@/config";
-
-const { default: axios } = require("axios");
+import axios from "axios";
+import api from "../api";
 
 async function getAllProducts() {
   return await axios.get(`${config.apiUrl}/api/products`);
@@ -11,11 +11,27 @@ async function getProductById(id) {
 }
 
 async function getProductByUser() {
-  return await axios.get(`${config.apiUrl}/api/products/users`);
+  return await api.get(`${config.apiUrl}/api/products/users`);
 }
 
 async function getCategories() {
   return await axios.get(`${config.apiUrl}/api/products/categories`);
 }
 
-export { getAllProducts, getCategories, getProductById, getProductByUser };
+async function createProduct(data) {
+  return await api.post(`${config.apiUrl}/api/products`, data);
+}
+
+async function updateProduct(id, data) {
+  return await api.put(`${config.apiUrl}/api/products/${id}`, data);
+}
+
+export {
+  createProduct,
+  updateProduct,
+  getAllProducts,
+  getCategories,
+  getProductById,
+  getProductByUser
+};
+

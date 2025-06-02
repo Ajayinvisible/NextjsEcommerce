@@ -21,7 +21,7 @@ async function EditProduct({ params }) {
       </div>
       <div className="card-body">
         <div className="py-4 mx-auto">
-          <ProductForm product={response.data} categories={ categoriesResponse.data } />
+          <ProductForm id={id} product={response.data} categories={ categoriesResponse.data } />
         </div>
       </div>
     </>

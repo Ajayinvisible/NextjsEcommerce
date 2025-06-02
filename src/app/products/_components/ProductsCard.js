@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import placeholder from "@/assets/images/no-image.png";
 
 function ProductsCard({ product }) {
   return (
@@ -24,7 +25,7 @@ function ProductsCard({ product }) {
             </span>
           </div>
           <Link href={`/products/${product.id}`}>
-            <span className="mb-2 block text-2xl font-bold tracking-tight text-gray-900 truncate">
+            <span className="mb-2 block text-xl font-bold tracking-tight text-gray-900 truncate">
               {product.name}
             </span>
           </Link>

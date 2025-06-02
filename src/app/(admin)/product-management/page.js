@@ -1,13 +1,27 @@
-import { getAllProducts } from "@/api/products/productsApi";
+"use client";
+import { getProductByUser } from "@/api/products/productsApi";
 import ProductTable from "@/components/products/Table";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-async function ProductManagement() {
-  const response = await getAllProducts().catch((error) => {
-    throw new Error(error.response.data);
+function ProductManagement() {
+  const [loading,setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProductByUser()
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        toast.error(
+          error?.response?.data || "Failed to fetch products"
+        );
+      }).finally(() => {
+        setLoading(false);
+      });
   });
-
-  const products = response?.data;
 
   return (
     <>
@@ -21,7 +35,7 @@ async function ProductManagement() {
         </Link>
       </div>
       <div className="card-body">
-        <ProductTable products={products} />
+        {loading ? <div>Loading...</div> : <ProductTable products={products} />}
       </div>
     </>
   );
