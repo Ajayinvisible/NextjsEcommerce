@@ -26,12 +26,17 @@ async function updateProduct(id, data) {
   return await api.put(`${config.apiUrl}/api/products/${id}`, data);
 }
 
+async function deleteProduct(id) {
+  return await api.delete(`${config.apiUrl}/api/products/${id}`);
+}
+
 export {
   createProduct,
   updateProduct,
   getAllProducts,
   getCategories,
   getProductById,
-  getProductByUser
+  getProductByUser,
+  deleteProduct
 };
 

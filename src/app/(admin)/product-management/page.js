@@ -1,13 +1,19 @@
 "use client";
 import { getProductByUser } from "@/api/products/productsApi";
 import ProductTable from "@/components/products/Table";
+import { setDeleteStatus } from "@/redux/product/productSlice";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 function ProductManagement() {
   const [loading,setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+
+  const deleteStatus = useSelector((state) => state.product);
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProductByUser()
@@ -20,8 +26,9 @@ function ProductManagement() {
         );
       }).finally(() => {
         setLoading(false);
+        dispatch(setDeleteStatus(null));
       });
-  });
+  },[deleteStatus,dispatch]);
 
   return (
     <>

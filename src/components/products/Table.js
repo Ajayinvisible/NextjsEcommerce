@@ -1,11 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaRegImage } from "react-icons/fa6";
 import { IoCog, IoTrashSharp } from "react-icons/io5";
-import noImage from "../../assets/images/no-image.png"; 
+import noImage from "../../assets/images/no-image.png";
+import DeleteProductModal from "./Modal";
 
 function ProductTable({ products }) {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  function removeProduct(product) {
+    setShowModal(true);
+    setSelectedProduct(product);
+  }
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -71,7 +79,10 @@ function ProductTable({ products }) {
                   >
                     <FaEdit className="inline-block" />
                   </Link>
-                  <button className="p-3 text-xs font-medium flex justify-center items-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-700">
+                  <button
+                    onClick={() => removeProduct(product)}
+                    className="p-3 text-xs font-medium flex justify-center items-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-700"
+                  >
                     <IoTrashSharp className="inline-block" />
                   </button>
                 </div>
@@ -80,6 +91,12 @@ function ProductTable({ products }) {
           ))}
         </tbody>
       </table>
+      <DeleteProductModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        product={selectedProduct}
+        setSelectedProduct={setSelectedProduct}
+      />
     </div>
   );
 }

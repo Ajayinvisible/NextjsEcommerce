@@ -7,6 +7,7 @@ import rootReducer from "./rootReducer";
 const persistConfig = {
   key: 'shopsmart',
   storage,
+  whitelist:['auth','userPreference']
 }
 const persistedReducer = persistReducer(persistConfig,rootReducer);
 
