@@ -1,4 +1,5 @@
 "use client";
+import { DASHBOARD_ROUTE, PRODUCT_MANAGEMENT_ROUTE, USER_MANAGEMENT_ROUTE } from "@/constants/routes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillProduct } from "react-icons/ai";
@@ -8,17 +9,17 @@ import { RiDashboardFill } from "react-icons/ri";
 const sidebarMenu = [
   {
     label: "Dashboard",
-    route: "/dashboard",
+    route: DASHBOARD_ROUTE,
     icon: <RiDashboardFill className="w-5 h-5" />,
   },
   {
     label: "User Management",
-    route: "/user-management",
+    route: USER_MANAGEMENT_ROUTE,
     icon: <FaUsersGear className="w-5 h-5" />,
   },
   {
     label: "Product Management",
-    route: "/product-management",
+    route: PRODUCT_MANAGEMENT_ROUTE,
     icon: <AiFillProduct className="w-5 h-5" />,
   },
 ];
@@ -34,7 +35,7 @@ function AdminSidebar() {
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-900">
         <ul className="space-y-2 font-medium">
           {sidebarMenu.map((menu, index) => {
-            const isActive = pathname == menu.route;
+            const isActive = pathname == menu.route || pathname.startsWith(menu.route);
             return (
               <li key={index}>
                 <Link

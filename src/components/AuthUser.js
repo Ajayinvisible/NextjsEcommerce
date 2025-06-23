@@ -7,6 +7,7 @@ import { IoLogOut } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import profile from "../assets/images/user.png";
 import { allowedAdminRoles } from "@/helpers/auth";
+import { DASHBOARD_ROUTE } from "@/constants/routes";
 
 function AuthUser({ user }) {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function AuthUser({ user }) {
             {isAllowed && (
               <Link
                 onClick={() => setShowPopup(!showPopup)}
-                href="/dashboard"
+                href={DASHBOARD_ROUTE}
                 className="my-2 w-full flex justify-between items-center bg-blue-800 hover:bg-blue-900 text-background border-2 border-blue-800 dark:bg-blue-800 p-1 rounded cursor-pointer dark:hover:opacity-80"
               >
                 Dashboard

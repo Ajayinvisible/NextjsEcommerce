@@ -1,6 +1,8 @@
+import { HOME_ROUTE, PRODUCTS_ROUTE } from "./routes";
+
 const navLinks = [
   {
-    route: "/",
+    route: HOME_ROUTE,
     label: "Home",
     isAuth: false,
   },
@@ -10,28 +12,9 @@ const navLinks = [
     isAuth: false,
   },
   {
-    route: "/products",
+    route: PRODUCTS_ROUTE,
     label: "Products",
     isAuth: false,
-  },
-  {
-    route: "/news",
-    label: "News",
-    isAuth: true,
-    subMenu: [
-      {
-        route: "/technology",
-        label: "Technology",
-      },
-      {
-        route: "/sports",
-        label: "Sports",
-      },
-      {
-        route: "/entertainment",
-        label: "Entertainment",
-      },
-    ],
   },
   {
     route: "/contact",
